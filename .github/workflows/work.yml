@@ -1,0 +1,20 @@
+name: CI/CD for HTML App - Docker
+on:
+  push:
+    branches:
+      - main
+jobs:
+  sonar-build:
+    runs-on: [self-hosted, windows]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: SonarQube Scan (Windows)
+        shell: cmd
+        run: |
+          sonar-scanner.bat" ^
+            -Dsonar.host.url=%SONAR_HOST_URL% ^
+            -Dsonar.login=%SONAR_TOKEN%
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
