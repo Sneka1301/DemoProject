@@ -12,7 +12,7 @@ jobs:
       - name: SonarQube Scan (Windows)
         shell: cmd
         run: |
-          sonar-scanner.bat" ^
+          "C:\MyApps\sonar-scanner-7.1.0.4889-windows-x64\bin\sonar-scanner.bat" ^
             -Dsonar.host.url=%SONAR_HOST_URL% ^
             -Dsonar.login=%SONAR_TOKEN%
         env:
